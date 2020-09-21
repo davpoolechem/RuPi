@@ -9,7 +9,7 @@ fn main() {
     let num_samples: i32 = argv[1].trim().parse().unwrap();
 
     //-- compute pi --//
-    let mut engine: pi::Engine = pi::Engine::new();
+    let mut engine: pi::Engine = pi::Engine::new(pi::Algorithm::MonteCarlo);
     engine.compute(num_samples);
 
     //-- print results --//
