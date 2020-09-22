@@ -31,8 +31,8 @@ impl Engine {
         match self.algorithm {
             Algorithm::MonteCarlo => {
                 return Ok(self.pi = algorithms::simple::compute(num_samples));
-            },
-            _ => Err("The selected algorithm has not been implemented yet.")
+            }
+            _ => Err("The selected algorithm has not been implemented yet."),
         }
     }
 }
