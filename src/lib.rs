@@ -1,4 +1,4 @@
-mod methods;
+mod algorithms;
 
 use num;
 
@@ -23,13 +23,16 @@ impl Engine {
         return self.pi;
     }
 
-    pub fn compute<T>(&mut self, num_samples: T) -> ()
+    pub fn compute<T>(&mut self, num_samples: T) -> Result<(), &'static str>
     where
         T: num::PrimInt + Into<f64>,
         std::ops::Range<T>: std::iter::Iterator,
     {
         match self.algorithm {
-            Algorithm::MonteCarlo => self.pi = methods::simple::compute(num_samples),
+            Algorithm::MonteCarlo => {
+                return Ok(self.pi = algorithms::simple::compute(num_samples));
+            },
+            _ => Err("invalid algorithm chosen"),
         }
     }
 }
@@ -39,4 +42,5 @@ impl Engine {
 //--------------------//
 pub enum Algorithm {
     MonteCarlo,
+    MidPoint,
 }

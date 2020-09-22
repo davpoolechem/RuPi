@@ -1,5 +1,5 @@
 [package]
-name = "monte_carlo"
+name = "rupi"
 version = "0.1.0"
 authors = ["david"]
 edition = "2018"
@@ -9,3 +9,4 @@ edition = "2018"
 [dependencies]
 num = "0.3.0"
 rand = "0.7.3"
+#constellation-rs = "0.1"
