@@ -1,0 +1,14 @@
+name: RuPi 
+version: "0.1"
+author: David Poole <davpoole@iastate.edu> 
+about: Computes digits of pi using various algorithms
+args:
+    - algorithm:
+        short: a
+        long: algorithm
+        help: Determines which algorithm to use 
+        takes_value: true
+    - INPUT:
+        help: Varies with algorithm; higher means better accuracy 
+        required: true
+        index: 1

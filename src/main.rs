@@ -1,26 +1,16 @@
 use rupi;
 
-use clap::{Arg, App};
+#[macro_use]
+extern crate clap;
+use clap::App;
+
 use std::process;
 
 fn main() {
     //-- define input options --//
-    let matches = App::new("RuPi")
-                          .version("0.1")                                       
-                          .author("David Poole <davpoole@iastate.edu>")               
-                          .about("Computes digits of pi")                         
-                          .arg(Arg::with_name("algorithm")                         
-                               .short("a")                                      
-                               .long("algorithm")                                  
-                               .help("Determines choice of algorithm used")
-                               .takes_value(true)                              
-                               .help("Determines algorithm used"))
-                          .arg(Arg::with_name("INPUT")                          
-                               .help("Varies with algoithm; higher means better accuracy")              
-                               .required(true)                                  
-                               .index(1))    
-                          .get_matches();                                       
-                                                                                
+    let yaml = load_yaml!("cli.yml");
+    let matches = App::from_yaml(yaml).get_matches();
+
     //-- process input options --//
     let algorithm: rupi::Algorithm = match matches.value_of("algorithm") { 
         Some("monte_carlo") => rupi::Algorithm::MonteCarlo,          
@@ -28,7 +18,7 @@ fn main() {
         Some("montecarlo") => rupi::Algorithm::MonteCarlo,          
         Some("midpoint") => rupi::Algorithm::MidPoint,
         Some(_)  => {
-            eprintln!("An invalid algorithm has been specified! Exiting program...");
+            eprintln!("Error while processing input: invalid algorithm");
             process::exit(1)
         },
         None => {
