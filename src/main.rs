@@ -27,7 +27,7 @@ fn main() {
         }
     };
 
-    let num_samples: i32 = matches
+    let num_samples: u128 = matches
         .value_of("INPUT")
         .unwrap()
         .trim()

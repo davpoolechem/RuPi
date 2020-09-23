@@ -23,6 +23,17 @@ impl Engine {
         return self.pi;
     }
 
+    pub fn compute(&mut self, num_samples: u128) -> Result<(), &'static str>
+    {
+        match self.algorithm {
+            Algorithm::MonteCarlo => {
+                return Ok(self.pi = algorithms::simple::compute(num_samples));
+            }
+            _ => Err("The selected algorithm has not been implemented yet."),
+        }
+    }
+ 
+ /*
     pub fn compute<T>(&mut self, num_samples: T) -> Result<(), &'static str>
     where
         T: num::PrimInt + Into<f64>,
@@ -35,6 +46,7 @@ impl Engine {
             _ => Err("The selected algorithm has not been implemented yet."),
         }
     }
+    */
 }
 
 //--------------------//

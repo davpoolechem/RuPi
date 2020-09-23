@@ -11,3 +11,4 @@ clap = {version = "~2.27.0", features = ["yaml"]}
 #constellation-rs = "0.1"
 num = "0.3.0"
 rand = "0.7.3"
+rayon = "1.1"
